@@ -46,21 +46,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUD_Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD_Cliente.Designer.cs">
+      <DependentUpon>CRUD_Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Produto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD_Produto.Designer.cs">
+      <DependentUpon>CRUD_Produto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DOMPET43DataSet.cs">
+      <DependentUpon>DOMPET43DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DOMPET43DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DOMPET43DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="CRUD_Pet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CRUD_Pet.Designer.cs">
+      <DependentUpon>CRUD_Pet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD_Consulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CRUD_Consulta.Designer.cs">
+      <DependentUpon>CRUD_Consulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inicial.Designer.cs">
+      <DependentUpon>Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="CRUD_Cliente.resx">
+      <DependentUpon>CRUD_Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD_Pet.resx">
+      <DependentUpon>CRUD_Pet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD_Produto.resx">
+      <DependentUpon>CRUD_Produto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUD_Consulta.resx">
+      <DependentUpon>CRUD_Consulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inicial.resx">
+      <DependentUpon>Inicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

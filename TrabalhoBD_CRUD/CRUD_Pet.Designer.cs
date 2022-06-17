@@ -1,6 +1,6 @@
 ﻿namespace TrabalhoBD_CRUD
 {
-    partial class formDOMPET43
+    partial class CRUD_Pet
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formDOMPET43));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CRUD_Pet));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtPorte = new System.Windows.Forms.TextBox();
@@ -38,8 +38,6 @@
             this.txtEspecie = new System.Windows.Forms.TextBox();
             this.txtRaca = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btNovo = new System.Windows.Forms.ToolStripButton();
-            this.btCancelar = new System.Windows.Forms.ToolStripButton();
             this.btSalvar = new System.Windows.Forms.ToolStripButton();
             this.btDeletar = new System.Windows.Forms.ToolStripButton();
             this.btEditar = new System.Windows.Forms.ToolStripButton();
@@ -47,6 +45,9 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtPesquisa = new System.Windows.Forms.ToolStripTextBox();
             this.btPesquisar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.txtPesquisarPorId = new System.Windows.Forms.ToolStripTextBox();
+            this.btPesquisarPorId = new System.Windows.Forms.ToolStripButton();
             this.txtUltimoDiagnostico = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -100,6 +101,7 @@
             this.txtCuidados.Name = "txtCuidados";
             this.txtCuidados.Size = new System.Drawing.Size(218, 64);
             this.txtCuidados.TabIndex = 4;
+            this.txtCuidados.TextChanged += new System.EventHandler(this.txtCuidados_TextChanged);
             // 
             // txtGenero
             // 
@@ -125,40 +127,21 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btNovo,
-            this.btCancelar,
             this.btSalvar,
             this.btDeletar,
             this.btEditar,
             this.toolStripSeparator1,
             this.toolStripLabel1,
             this.txtPesquisa,
-            this.btPesquisar});
+            this.btPesquisar,
+            this.toolStripLabel2,
+            this.txtPesquisarPorId,
+            this.btPesquisarPorId});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(578, 25);
             this.toolStrip1.TabIndex = 9;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btNovo
-            // 
-            this.btNovo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btNovo.Image = ((System.Drawing.Image)(resources.GetObject("btNovo.Image")));
-            this.btNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btNovo.Name = "btNovo";
-            this.btNovo.Size = new System.Drawing.Size(23, 22);
-            this.btNovo.Text = "Novo";
-            this.btNovo.Click += new System.EventHandler(this.btNovo_Click);
-            // 
-            // btCancelar
-            // 
-            this.btCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btCancelar.Image")));
-            this.btCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btCancelar.Name = "btCancelar";
-            this.btCancelar.Size = new System.Drawing.Size(23, 22);
-            this.btCancelar.Text = "Cancelar";
-            this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // btSalvar
             // 
@@ -217,13 +200,37 @@
             this.btPesquisar.Text = "Pesquisar";
             this.btPesquisar.Click += new System.EventHandler(this.btPesquisar_Click);
             // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(42, 22);
+            this.toolStripLabel2.Text = "Por ID:";
+            // 
+            // txtPesquisarPorId
+            // 
+            this.txtPesquisarPorId.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtPesquisarPorId.Name = "txtPesquisarPorId";
+            this.txtPesquisarPorId.Size = new System.Drawing.Size(100, 25);
+            // 
+            // btPesquisarPorId
+            // 
+            this.btPesquisarPorId.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btPesquisarPorId.Image = ((System.Drawing.Image)(resources.GetObject("btPesquisarPorId.Image")));
+            this.btPesquisarPorId.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btPesquisarPorId.Name = "btPesquisarPorId";
+            this.btPesquisarPorId.Size = new System.Drawing.Size(23, 22);
+            this.btPesquisarPorId.Text = "toolStripButton1";
+            this.btPesquisarPorId.Click += new System.EventHandler(this.btPesquisarPorId_Click);
+            // 
             // txtUltimoDiagnostico
             // 
+            this.txtUltimoDiagnostico.Enabled = false;
             this.txtUltimoDiagnostico.Location = new System.Drawing.Point(327, 133);
             this.txtUltimoDiagnostico.Multiline = true;
             this.txtUltimoDiagnostico.Name = "txtUltimoDiagnostico";
             this.txtUltimoDiagnostico.Size = new System.Drawing.Size(218, 64);
             this.txtUltimoDiagnostico.TabIndex = 10;
+            this.txtUltimoDiagnostico.TextChanged += new System.EventHandler(this.txtUltimoDiagnostico_TextChanged);
             // 
             // label1
             // 
@@ -237,7 +244,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(324, 117);
+            this.label2.Location = new System.Drawing.Point(324, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 12;
@@ -255,7 +262,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(190, 25);
+            this.label4.Location = new System.Drawing.Point(178, 25);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 14;
@@ -266,23 +273,23 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(19, 115);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.Size = new System.Drawing.Size(74, 13);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Espécie";
+            this.label5.Text = "Espécie (C/G)";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(178, 117);
+            this.label6.Location = new System.Drawing.Point(180, 117);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
+            this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Porte";
+            this.label6.Text = "Porte (P/M/G)";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(189, 69);
+            this.label7.Location = new System.Drawing.Point(178, 70);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 17;
@@ -302,9 +309,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(22, 157);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 19;
-            this.label9.Text = "Gênero";
+            this.label9.Text = "Gênero (M/F)";
             // 
             // label10
             // 
@@ -342,13 +349,16 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 227);
+            this.dataGridView1.Location = new System.Drawing.Point(25, 246);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(520, 217);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(520, 198);
             this.dataGridView1.TabIndex = 23;
             // 
-            // formDOMPET43
+            // CRUD_Pet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -376,7 +386,7 @@
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtNome);
             this.MaximizeBox = false;
-            this.Name = "formDOMPET43";
+            this.Name = "CRUD_Pet";
             this.Text = "DOMPET43";
             this.Load += new System.EventHandler(this.formDOMPET43_Load);
             this.toolStrip1.ResumeLayout(false);
@@ -401,8 +411,6 @@
         private System.Windows.Forms.TextBox txtEspecie;
         private System.Windows.Forms.TextBox txtRaca;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btNovo;
-        private System.Windows.Forms.ToolStripButton btCancelar;
         private System.Windows.Forms.ToolStripButton btSalvar;
         private System.Windows.Forms.ToolStripButton btDeletar;
         private System.Windows.Forms.ToolStripButton btEditar;
@@ -426,6 +434,9 @@
         private System.Windows.Forms.BindingSource dOMPET43DataSetBindingSource;
         private DOMPET43DataSet dOMPET43DataSet;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripTextBox txtPesquisarPorId;
+        private System.Windows.Forms.ToolStripButton btPesquisarPorId;
     }
 }
 

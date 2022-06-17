@@ -11,15 +11,13 @@ using System.Data.SqlClient;
 
 namespace TrabalhoBD_CRUD
 {
-    public partial class formDOMPET43 : Form
+    public partial class CRUD_Pet : Form
     {
         private SqlConnection sqlCon;
-        private int currentContact;
-        private bool adding;
         private string strSql;
         private string strCon = "Data Source=MARCEL\\SQLEXPRESS;Initial Catalog=DOMPET43;Integrated Security=True";
 
-        public formDOMPET43()
+        public CRUD_Pet()
         {
             InitializeComponent();
         }
@@ -35,70 +33,20 @@ namespace TrabalhoBD_CRUD
         private void formDOMPET43_Load(object sender, EventArgs e)
         {
             sqlCon = getSGBDConnection();
-            txtId.Enabled = false;
-            txtNome.Enabled = false;
-            txtPeso.Enabled = false;
-            txtRaca.Enabled = false;
-            txtEspecie.Enabled = false;
-            txtGenero.Enabled = false;
-            txtIdade.Enabled = false;
-            txtEspecie.Enabled = false;
-            txtPorte.Enabled = false;
-            btCancelar.Enabled = false;
-            btDeletar.Enabled = false;
-            btEditar.Enabled = false;
-            btSalvar.Enabled = false;
-            txtUltimoDiagnostico.Enabled = false;
-            txtCuidados.Enabled = false;
             sqlCon.Open();
-            SqlDataAdapter ad = new SqlDataAdapter("SELECT * FROM PET", sqlCon);
+            SqlDataAdapter ad = new SqlDataAdapter("EXEC DadosPet", sqlCon);
             DataTable dt = new DataTable();
             ad.Fill(dt);
             dataGridView1.DataSource = dt;
         }
 
-        private void btCancelar_Click(object sender, EventArgs e)
-        {
-            txtNome.Text = "";
-            txtId.Text = "";
-            txtIdade.Text = "";
-            txtRaca.Text = "";
-            txtPeso.Text = "";
-            txtPorte.Text = "";
-            txtEspecie.Text = "";
-            txtGenero.Text = "";
-            txtUltimoDiagnostico.Text = "";
-            txtCuidados.Text = "";
-        }
 
-        private string GetStrCon()
-        {
-            return strCon;
-        }
 
-        private void btNovo_Click(object sender, EventArgs e)
-        {
-            txtId.Enabled = false;
-            txtNome.Enabled = true;
-            txtPeso.Enabled = true;
-            txtRaca.Enabled = true;
-            txtEspecie.Enabled = true;
-            txtGenero.Enabled = true;
-            txtIdade.Enabled = true;
-            txtEspecie.Enabled = true;
-            txtPorte.Enabled = true;
-            btCancelar.Enabled = true;
-            btDeletar.Enabled = false;
-            btEditar.Enabled = false;
-            btSalvar.Enabled = true;
-            txtUltimoDiagnostico.Enabled = true;
-            txtCuidados.Enabled = true;
-        }
+
 
         private void btSalvar_Click(object sender, EventArgs e)
         {
-
-            strSql = "INSERT INTO PET (Nome,Idade,Genero,Raca,Especie,Peso,Porte) VALUES(@Nome,@Idade, @Genero,@Raca,@Especie,@Peso,@Porte) ";
+            strSql = "Exec InserirPet @Nome,@Idade, @Genero,@Raca,@Especie,@Peso,@Porte,@Cuidados ";
             sqlCon = new SqlConnection(strCon);
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
             comando.Parameters.Add("@Nome", SqlDbType.VarChar).Value = txtNome.Text;
@@ -108,6 +56,7 @@ namespace TrabalhoBD_CRUD
             comando.Parameters.Add("@Especie", SqlDbType.Char).Value = txtEspecie.Text;
             comando.Parameters.Add("@Peso", SqlDbType.Float).Value = txtPeso.Text;
             comando.Parameters.Add("@Porte", SqlDbType.Char).Value = txtPorte.Text;
+            comando.Parameters.Add("@Cuidados", SqlDbType.VarChar).Value = txtCuidados.Text;
             txtId.Enabled = false;
             try
             {
@@ -132,20 +81,20 @@ namespace TrabalhoBD_CRUD
                 txtGenero.Text = "";
                 txtUltimoDiagnostico.Text = "";
                 txtCuidados.Text = "";
+                SqlDataAdapter ad = new SqlDataAdapter("EXEC DadosPet", sqlCon);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                dataGridView1.DataSource = dt;
                 sqlCon.Close();
             }
         }
 
         private void btPesquisar_Click(object sender, EventArgs e)
         {
-            btDeletar.Enabled = true;
-            btEditar.Enabled = true;
-            txtId.Enabled = false;
-            strSql = "SELECT * FROM PET WHERE Nome=@Nome";
+            strSql = "EXEC PesquisaPetNome @Nome";
             sqlCon = new SqlConnection(strCon);
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
             comando.Parameters.Add("@Nome", SqlDbType.VarChar).Value = txtPesquisa.Text;
-
             try
             {
                 if (txtPesquisa.Text == String.Empty)
@@ -172,7 +121,13 @@ namespace TrabalhoBD_CRUD
                 txtPorte.Text = Convert.ToString(dr["Porte"]);
                 txtEspecie.Text = Convert.ToString(dr["Especie"]);
                 txtGenero.Text = Convert.ToString(dr["Genero"]);
-                dr.Close();
+                txtCuidados.Text = Convert.ToString(dr["Cuidados"]);
+                txtUltimoDiagnostico.Text= Convert.ToString(dr["UltimoDiagnostico"]);
+                dr.Close();                
+                SqlDataAdapter ad = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -180,10 +135,6 @@ namespace TrabalhoBD_CRUD
             }
             finally
             {
-                SqlDataAdapter ad = new SqlDataAdapter(comando);
-                DataTable dt = new DataTable();
-                ad.Fill(dt);
-                dataGridView1.DataSource = dt;
                 sqlCon.Close();
             }
 
@@ -202,7 +153,7 @@ namespace TrabalhoBD_CRUD
 
             else
             {
-                strSql = "DELETE FROM PET WHERE @Nome=Nome AND @IdPet=IdPet";
+                strSql = "Exec DeletePet @Nome, @IdPet";
                 sqlCon = new SqlConnection(strCon);
                 SqlCommand comando = new SqlCommand(strSql, sqlCon);
                 comando.Parameters.Add("@Nome", SqlDbType.VarChar).Value = txtNome.Text;
@@ -214,6 +165,10 @@ namespace TrabalhoBD_CRUD
                     sqlCon.Open();
                     comando.ExecuteNonQuery();
                     MessageBox.Show("EXCLUSÃO DO PET REALIZADA COM SUCESSO!");
+                    SqlDataAdapter ad = new SqlDataAdapter("EXEC DadosPet", sqlCon);
+                    DataTable dt = new DataTable();
+                    ad.Fill(dt);
+                    dataGridView1.DataSource = dt;
                 }
                 catch (Exception ex)
                 {
@@ -241,7 +196,7 @@ namespace TrabalhoBD_CRUD
 
         private void btEditar_Click(object sender, EventArgs e)
         {
-            strSql = "UPDATE PET SET @Nome=Nome,@Idade=Idade, @Genero=Genero,@Raca=Raca,@Especie=Especie,@Peso=Peso,@Porte=Porte WHERE  @Nome=Nome AND @IdPet=IdPet";
+            strSql = "EXEC UpdatePet @Nome, @Idade, @Genero, @Raca, @Especie, @Peso ,@Porte ,@Cuidados ,@IdPet";
             sqlCon = new SqlConnection(strCon);
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
             comando.Parameters.Add("@Nome", SqlDbType.VarChar).Value = txtNome.Text;
@@ -250,14 +205,18 @@ namespace TrabalhoBD_CRUD
             comando.Parameters.Add("@Raca", SqlDbType.VarChar).Value = txtRaca.Text;
             comando.Parameters.Add("@Especie", SqlDbType.Char).Value = txtEspecie.Text;
             comando.Parameters.Add("@Peso", SqlDbType.Float).Value = txtPeso.Text;
+            comando.Parameters.Add("@IdPet", SqlDbType.Int).Value = txtId.Text;
             comando.Parameters.Add("@Porte", SqlDbType.Char).Value = txtPorte.Text;
-            txtId.Enabled = false;
-
+            comando.Parameters.Add("@Cuidados", SqlDbType.VarChar).Value = txtCuidados.Text;
             try
             {
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
                 MessageBox.Show("ALTERAÇÃO DO PET REALIZADA COM SUCESSO!");
+                SqlDataAdapter ad = new SqlDataAdapter("EXEC DadosPet", sqlCon);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -267,6 +226,89 @@ namespace TrabalhoBD_CRUD
             {
                 sqlCon.Close();
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                dataGridView1.CurrentRow.Selected = true;
+                txtNome.Text = dataGridView1.Rows[e.RowIndex].Cells["Nome"].FormattedValue.ToString();
+                txtIdade.Text = dataGridView1.Rows[e.RowIndex].Cells["Idade"].FormattedValue.ToString();
+                txtGenero.Text = dataGridView1.Rows[e.RowIndex].Cells["Genero"].FormattedValue.ToString();
+                txtRaca.Text = dataGridView1.Rows[e.RowIndex].Cells["Raca"].FormattedValue.ToString();
+                txtEspecie.Text = dataGridView1.Rows[e.RowIndex].Cells["Especie"].FormattedValue.ToString();
+                txtPeso.Text = dataGridView1.Rows[e.RowIndex].Cells["Peso"].FormattedValue.ToString();
+                txtPorte.Text = dataGridView1.Rows[e.RowIndex].Cells["Porte"].FormattedValue.ToString();
+                txtId.Text = dataGridView1.Rows[e.RowIndex].Cells["IdPet"].FormattedValue.ToString();
+            }
+        }
+
+        private void txtCuidados_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btPesquisarPorId_Click(object sender, EventArgs e)
+        {
+            btDeletar.Enabled = true;
+            btEditar.Enabled = true;
+            txtId.Enabled = false;
+            strSql = "EXEC PesquisaPetId @IdPet";
+            sqlCon = new SqlConnection(strCon);
+            SqlCommand comando = new SqlCommand(strSql, sqlCon);
+            comando.Parameters.Add("@IdPet", SqlDbType.Int).Value = txtPesquisarPorId.Text;
+
+            try
+            {
+                if (txtPesquisarPorId.Text == String.Empty)
+                {
+                    throw new Exception("Digite algo!");
+                }
+
+                sqlCon.Open();
+
+                SqlDataReader dr = comando.ExecuteReader();
+
+                if (dr.HasRows == false)
+                {
+                    throw new Exception("PET não presente no banco de dados!");
+                }
+
+                dr.Read();
+
+                txtNome.Text = Convert.ToString(dr["Nome"]);
+                txtId.Text = Convert.ToString(dr["IdPet"]);
+                txtIdade.Text = Convert.ToString(dr["Idade"]);
+                txtRaca.Text = Convert.ToString(dr["Raca"]);
+                txtPeso.Text = Convert.ToString(dr["Peso"]);
+                txtPorte.Text = Convert.ToString(dr["Porte"]);
+                txtEspecie.Text = Convert.ToString(dr["Especie"]);
+                txtGenero.Text = Convert.ToString(dr["Genero"]);
+                txtCuidados.Text = Convert.ToString(dr["Cuidados"]);
+                txtUltimoDiagnostico.Text = Convert.ToString(dr["UltimoDiagnostico"]);
+                dr.Close();
+                SqlDataAdapter ad = new SqlDataAdapter(comando);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+                sqlCon.Close();
+            }
+
+
+        }
+
+        private void txtUltimoDiagnostico_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

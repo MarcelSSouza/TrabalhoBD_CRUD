@@ -16,7 +16,7 @@ namespace TrabalhoBD_CRUD
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formDOMPET43());
+            Application.Run(new Inicial()); 
         }
     }
 }

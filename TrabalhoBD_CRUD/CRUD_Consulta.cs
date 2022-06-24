@@ -30,7 +30,7 @@ namespace TrabalhoBD_CRUD
             strSql = "Exec InserirConsulta (@IdVeterinario,@NifDono,@Preco,@UltimoDiagnostico, @Procedimentos,@IdPet, @DataConsulta);";
             sqlCon = new SqlConnection(strCon);
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
-            comando.Parameters.Add("@Preco", SqlDbType.Float).Value = txtPreco.Text;
+            comando.Parameters.Add("@Preco", SqlDbType.Float).Value = txtPreco.Text; 
             comando.Parameters.Add("@UltimoDiagnostico", SqlDbType.VarChar).Value = txtDiagnostico.Text;
             comando.Parameters.Add("@Procedimentos", SqlDbType.VarChar).Value = txtProcedimento.Text;
             comando.Parameters.Add("@NifDono", SqlDbType.Int).Value = txtNifDono.Text;

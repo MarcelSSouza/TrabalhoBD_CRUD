@@ -15,7 +15,7 @@ namespace TrabalhoBD_CRUD
     {
         private SqlConnection sqlCon;
         private string strSql;
-        private string strCon = "Data Source=MARCEL\\SQLEXPRESS;Initial Catalog=DOMPET43;Integrated Security=True";
+        private string strCon = "Data Source=PET-PC;Initial Catalog=DOMPET43;Integrated Security=True";
 
         public CRUD_Pet()
         {
@@ -307,6 +307,61 @@ namespace TrabalhoBD_CRUD
         }
 
         private void txtUltimoDiagnostico_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtIdade_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPeso_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPorte_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEspecie_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

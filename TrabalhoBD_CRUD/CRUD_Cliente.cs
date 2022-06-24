@@ -15,7 +15,7 @@ namespace TrabalhoBD_CRUD
     { 
         private SqlConnection sqlCon;
         private string strSql;
-        private string strCon = "Data Source=MARCEL\\SQLEXPRESS;Initial Catalog=DOMPET43;Integrated Security=True";
+        private string strCon = "Data Source=PET-PC;Initial Catalog=DOMPET43;Integrated Security=True";
         public CRUD_Cliente()
         {
             InitializeComponent();
@@ -256,6 +256,41 @@ namespace TrabalhoBD_CRUD
             {
                 sqlCon.Close();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNif_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTelefone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
     }

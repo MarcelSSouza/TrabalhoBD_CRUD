@@ -15,7 +15,7 @@ namespace TrabalhoBD_CRUD
     {
         private SqlConnection sqlCon;
         private string strSql;
-        private string strCon = "Data Source=MARCEL\\SQLEXPRESS;Initial Catalog=DOMPET43;Integrated Security=True";
+        private string strCon = "Data Source=PET-PC;Initial Catalog=DOMPET43;Integrated Security=True";
 
         public CRUD_Produto()
         {
@@ -305,6 +305,26 @@ namespace TrabalhoBD_CRUD
             DataTable dt = new DataTable();
             ad.Fill(dt);
             dataGridView1.DataSource = dt;
+
+        }
+
+        private void Nome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
 
         }
     }

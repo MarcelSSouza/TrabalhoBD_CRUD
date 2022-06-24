@@ -14,7 +14,7 @@ namespace TrabalhoBD_CRUD
     {
         private SqlConnection sqlCon;
         private string strSql;
-        private string strCon = "Data Source=MARCEL\\SQLEXPRESS;Initial Catalog=DOMPET43;Integrated Security=True";
+        private string strCon = "Data Source=PET-PC;Initial Catalog=DOMPET43;Integrated Security=True"; //STRING DE CONEXAO!!
         public Consulta()
         {
             InitializeComponent();
@@ -27,15 +27,15 @@ namespace TrabalhoBD_CRUD
 
         private void btEnviar_Click(object sender, EventArgs e)
         {
-            strSql = "Exec InserirConsulta (@IdVeterinario,@NifDono,@Preco,@UltimoDiagnostico, @Procedimentos,@IdPet, @DataConsulta);";
+            strSql = "Exec InserirConsulta ( @IdVeterinario,@NifDono,@Preco,@UltimoDiagnostico, @Procedimentos,@IdPet, @DataConsulta);";
             sqlCon = new SqlConnection(strCon);
             SqlCommand comando = new SqlCommand(strSql, sqlCon);
-            comando.Parameters.Add("@Preco", SqlDbType.Float).Value = txtPreco.Text; 
+            comando.Parameters.Add("@IdVeterinario", SqlDbType.Int).Value = txtIdVeterinario.Text;
+            comando.Parameters.Add("@NifDono", SqlDbType.Int).Value = txtNifDono.Text;
+            comando.Parameters.Add("@Preco", SqlDbType.Float).Value = txtPreco.Text;
             comando.Parameters.Add("@UltimoDiagnostico", SqlDbType.VarChar).Value = txtDiagnostico.Text;
             comando.Parameters.Add("@Procedimentos", SqlDbType.VarChar).Value = txtProcedimento.Text;
-            comando.Parameters.Add("@NifDono", SqlDbType.Int).Value = txtNifDono.Text;
             comando.Parameters.Add("@IdPet", SqlDbType.Int).Value = txtIdPet.Text;
-            comando.Parameters.Add("@IdVeterinario", SqlDbType.Int).Value = txtIdVeterinario.Text;
             comando.Parameters.Add("@DataConsulta", SqlDbType.Date).Value =  Convert.ToDateTime(txtDataConsulta.Text);
             try
             {
@@ -58,6 +58,36 @@ namespace TrabalhoBD_CRUD
                 txtDataConsulta.Text = "";
                 sqlCon.Close();
             }
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPreco_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDataConsulta_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
